@@ -5,7 +5,7 @@ import styles from "./Messages.module.scss"
 const Messages = (props) => {
     return(
         <div>
-            This is Dialogs
+            This is Messages
         </div>
     )
 }
