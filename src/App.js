@@ -1,5 +1,5 @@
 import React from 'react'
-import './App.css';
+import './App.scss';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
@@ -17,7 +17,7 @@ const App = () => {
                 <Header />
                 <Navbar />
                 <div className='app-wrapper-content'>
-                    <Route path='/' component={Profile}/>
+                    {/* <Route path='' component={Profile}/> */}
                     <Route path='/profile' component={Profile}/>
                     <Route path='/messages'  component={Messages}/>
                     <Route path='/news' component={News}/>

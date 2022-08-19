@@ -4,11 +4,14 @@
     padding: 10% 25%;
 }
 
-.item a {
-    color: white;
-    text-decoration: none;
-}
+.item {
+    a {
+        color: white;
+        text-decoration: none;
+    }
 
-.item a.active {
-    color: #c5c5c5;
+    a.active {
+        color: #c5c5c5;
+    }
+
 }
