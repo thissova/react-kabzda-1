@@ -2,17 +2,18 @@
     a {
         color: rgb(255, 255, 255);
         text-decoration: none;
-
-        .active{
-            color: #c5c5c5;
-        }
     }
+
+    a.active {
+        color: #c5c5c5;
+    }
+
 
     &s {
         display: grid;
         grid-template-columns: 2fr 10fr;
 
-        &Items{
+        &Items {
             padding-left: 20px;
             padding-top: 10px;
         }
