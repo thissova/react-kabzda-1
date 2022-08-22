@@ -4,7 +4,7 @@ import styles from './Post.module.scss'
 const Post = (props) => {
     let textLike = 'like'
 
-    if (props.likesCount !== '1'){
+    if (props.likesCount !== 1){
         textLike = 'likes'
     }
     
