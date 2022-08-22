@@ -5,7 +5,7 @@ import Post from "./Post/Post";
 const MyPosts = () => {
     let postsData = [
         { likesCount: 1, message: 'Good morning' },
-        { likesCount: 73, message: "It's my first post" }
+        { likesCount: 73, message: "It's my first post" }      
     ]
     let postsElements = postsData.map(post =>
         <Post message={post.message} likesCount={post.likesCount} />

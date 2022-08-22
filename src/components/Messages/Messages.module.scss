@@ -1,24 +1,30 @@
-.dialogs {
-    display: grid;
-    grid-template-columns: 2fr 10fr;
-}
-
 .dialog {
-    a{
+    a {
         color: rgb(255, 255, 255);
         text-decoration: none;
+
+        .active{
+            color: #c5c5c5;
+        }
     }
 
-    a.active {
-        color: #c5c5c5;
+    &s {
+        display: grid;
+        grid-template-columns: 2fr 10fr;
+
+        &Items{
+            padding-left: 20px;
+            padding-top: 10px;
+        }
     }
+
 }
 
-.dialogsItems {
-    padding-left: 20px;    
-    padding-top: 10px;    
-}
+.message {
+    color: black;
+    font-size: 17px;
 
-.messages {
-    padding: 10px;
+    &s {
+        padding: 10px;
+    }
 }
