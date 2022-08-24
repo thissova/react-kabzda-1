@@ -3,11 +3,10 @@ import styles from './MyPosts.module.scss'
 import Post from "./Post/Post";
 
 const MyPosts = (props) => {
-    debugger
-    let postsElements = props.posts.map(post =>
+    
+    let postsElements = props.state.posts.map(post =>
         <Post message={post.message} likesCount={post.likesCount} />
     )
-
     return (
         <div className={styles.content}>
             <h2>My posts</h2>

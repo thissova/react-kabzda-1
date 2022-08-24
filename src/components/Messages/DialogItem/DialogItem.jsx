@@ -3,9 +3,18 @@ import { NavLink } from "react-router-dom";
 import styles from './../Messages.module.scss'
 
 const DialogItem = (props) => {
+
     return (
+
         <div className={styles.dialog}>
-            <NavLink to={"/messages/" + props.id} activeClassName={styles.active}>{props.name}</NavLink>
+            <NavLink to={"/messages/" + props.id} activeClassName={styles.active} className={styles.linkedImage}>
+                <img src={props.img} alt={`Id: ${props.id}`} />
+                
+            </NavLink>
+            <NavLink to={"/messages/" + props.id} activeClassName={styles.active} className={styles.linkedText}>
+                
+                {props.name}
+            </NavLink>
         </div>
     )
 }

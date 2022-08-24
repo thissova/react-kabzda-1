@@ -2,20 +2,30 @@
     a {
         color: rgb(255, 255, 255);
         text-decoration: none;
+        vertical-align: middle;
     }
 
     a.active {
         color: #c5c5c5;
     }
 
+    img {
+        width: 40px;
+    }
+
+    .linkedText {
+        padding-left: 5px;
+    }
 
     &s {
         display: grid;
         grid-template-columns: 2fr 10fr;
 
+
         &Items {
             padding-left: 20px;
             padding-top: 10px;
+
         }
     }
 
@@ -24,8 +34,31 @@
 .message {
     color: black;
     font-size: 17px;
+    padding: 5px;
+    img {
+        width: 50px;
+        border-radius: 123px;
+    }
 
     &s {
-        padding: 10px;
+       
+
+        .leftSide {
+            padding-left: 1vh;
+            .text{
+                margin-left: 2px;
+            }
+        }
+
+        .rightSide {
+            img{
+                float: right;
+            }
+            .text{
+                float: right;
+                margin-top: 2.2vh;
+                margin-right: 2px;
+            }
+        }
     }
 }
