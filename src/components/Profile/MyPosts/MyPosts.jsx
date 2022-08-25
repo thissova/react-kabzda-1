@@ -13,6 +13,7 @@ const MyPosts = (props) => {
     let addPost = () => {
         let text = postRef.current.value
         props.addPost(text)
+        postRef.current.value = ''
     }
     return (
         <div className={styles.content}>
