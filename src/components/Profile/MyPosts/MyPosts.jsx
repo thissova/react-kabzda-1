@@ -13,14 +13,17 @@ const MyPosts = (props) => {
     let addPost = () => {
         let text = postRef.current.value
         props.addPost(text)
-        postRef.current.value = ''
+    }
+    let changeNewTextPost = () => {
+        let text = postRef.current.value
+        props.changeNewTextPost(text)
     }
     return (
         <div className={styles.content}>
             <h2>My posts</h2>
             <div>
                 <div>
-                    <textarea name="new post" placeholder="Add new post" ref={postRef}></textarea>
+                    <textarea onChange={changeNewTextPost} name="new post" placeholder="Add new post" ref={postRef} value={props.state.newTextPost}/>
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>
