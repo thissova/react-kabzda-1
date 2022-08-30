@@ -12,11 +12,11 @@ const MyPosts = (props) => {
 
     let addPost = () => {
         let text = postRef.current.value
-        props.addPost(text)
+        props.dispatch({type: 'ADD-POST'})
     }
     let changeNewTextPost = () => {
         let text = postRef.current.value
-        props.changeNewTextPost(text)
+        props.dispatch({type: 'CHANGE-NEW-TEXT-POST', text})
     }
     return (
         <div className={styles.content}>

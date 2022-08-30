@@ -1,23 +1,24 @@
 import React from 'react';
-import App from './App'
 import ReactDOM from 'react-dom/client';
+import App from './App'
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import state, { addPost, subscribe, changeNewTextPost}  from './data/state';
+import store from './data/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const rerenderEntireTree = (state) => {
+const rerenderEntireTree = () => {
     root.render(
         <React.StrictMode>
-            <App state={state} addPost={addPost} changeNewTextPost={changeNewTextPost}/>
+            <App 
+            state={store.getState()} dispatch={store.dispatch.bind(store)}/>
         </React.StrictMode>
     );
 }
 
-rerenderEntireTree(state)
+rerenderEntireTree(store.getState())
 
-subscribe(rerenderEntireTree)
+store.setRerenderEntireTree(rerenderEntireTree)
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
