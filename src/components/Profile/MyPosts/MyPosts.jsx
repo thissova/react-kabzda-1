@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './MyPosts.module.scss'
 import Post from "./Post/Post";
-
+import { addPostActionCreator, changeNewTextPostActionCreator  } from "../../../data/store";
 const MyPosts = (props) => {
     
     let postsElements = props.state.posts.map(post =>
@@ -11,12 +11,12 @@ const MyPosts = (props) => {
     let postRef = React.createRef();
 
     let addPost = () => {
-        let text = postRef.current.value
-        props.dispatch({type: 'ADD-POST'})
+        props.dispatch(addPostActionCreator())
+        
     }
     let changeNewTextPost = () => {
         let text = postRef.current.value
-        props.dispatch({type: 'CHANGE-NEW-TEXT-POST', text})
+        props.dispatch(changeNewTextPostActionCreator(text))
     }
     return (
         <div className={styles.content}>

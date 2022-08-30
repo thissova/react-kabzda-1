@@ -57,5 +57,11 @@ let store = {
 
 window.store = store
 
+export let addPostActionCreator = () => {
+    return {type: 'ADD-POST'}
+}
 
+export let changeNewTextPostActionCreator = (text) => {
+    return {type: 'CHANGE-NEW-TEXT-POST', newText:text}
+}
 export default store
