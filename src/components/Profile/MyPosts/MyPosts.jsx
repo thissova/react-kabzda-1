@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './MyPosts.module.scss'
 import Post from "./Post/Post";
-import { addPostActionCreator, changeNewTextPostActionCreator  } from "../../../data/store";
+import { addPostActionCreator, changeNewTextPostActionCreator} from "../../../data/profile-reducer";
 const MyPosts = (props) => {
     
     let postsElements = props.state.posts.map(post =>

@@ -34,7 +34,7 @@
 .message {
     color: black;
     font-size: 17px;
-    padding: 5px;
+    margin: 5px;
     img {
         width: 50px;
         border-radius: 123px;
@@ -42,7 +42,7 @@
 
     &s {
         .leftSide {
-            padding-left: 1vh;
+            margit-left: 1vh;
             .text{
                 margin-left: 2px;
             }
@@ -63,7 +63,7 @@
 .textBox{
     width: auto;
     float: right;
-    margin: 5px;
+    margin-top: 5px;
 
     button{
         cursor: pointer;

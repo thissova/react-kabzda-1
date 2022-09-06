@@ -2,18 +2,24 @@ import React from "react";
 import styles from "./Messages.module.scss"
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import {sendMessageActionCreator, changeSendMessageActionCreator} from "../../data/dialogs-reducer";
+
 
 const Messages = (props) => {
     let dialogsElements = props.state.dialogs
-        .map(dialog => <DialogItem name={dialog.name} id={dialog.id} img={dialog.img} />)
+        .map(dialog => <DialogItem name={dialog.name} id={dialog.id} img={dialog.img}/>)
     let messagesElements = props.state.messages
-        .map(m => <Message message={m.message} img={m.img} id={m.id} />)
+        .map(m => <Message message={m.message} img={m.img} id={m.id}/>)
 
     let sendRef = React.createRef()
 
-    let sendMessage = () => {
+    const sendMessage = () => {
+        props.dispatch(sendMessageActionCreator())
+    };
+
+    let changeSendMessage = () => {
         let text = sendRef.current.value;
-        alert(text)
+        props.dispatch(changeSendMessageActionCreator(text))
     }
 
     return (
@@ -22,10 +28,16 @@ const Messages = (props) => {
                 {dialogsElements}
             </div>
             <div className={styles.messages}>
-                {messagesElements}
+                <div>{messagesElements}</div>
                 <div className={styles.textBox}>
-                    <textarea placeholder="Put your messages hear" cols="30" rows='3' ref={sendRef}></textarea>
-                    <button onClick={sendMessage}>send</button>
+                    <div>
+                        <textarea onChange={changeSendMessage} placeholder="Put your messages here" cols="30" rows='3'
+                                  ref={sendRef} value={props.state.newTextMessage}/>
+                    </div>
+
+                    <div>
+                        <button onClick={sendMessage}>send</button>
+                    </div>
                 </div>
             </div>
 
