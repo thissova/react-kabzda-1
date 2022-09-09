@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Messages.module.scss"
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {sendMessageActionCreator, changeSendMessageActionCreator} from "../../data/dialogs-reducer";
+import {sendMessageActionCreator, changeSendMessageActionCreator} from "../../data/messages-reducer";
 
 
 const Messages = (props) => {
