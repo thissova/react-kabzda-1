@@ -6,9 +6,9 @@ import Message from "./Message/Message";
 
 
 const Messages = (props) => {
-    let dialogsElements = props.state.dialogs
+    let dialogsElements = props.messagesPage.dialogs
         .map(dialog => <DialogItem name={dialog.name} id={dialog.id} img={dialog.img}/>)
-    let messagesElements = props.state.messages
+    let messagesElements = props.messagesPage.messages
         .map(m => <Message message={m.message} img={m.img} id={m.id}/>)
 
     let sendRef = React.createRef()
@@ -33,7 +33,7 @@ const Messages = (props) => {
                 <div className={styles.textBox}>
                     <div>
                         <textarea onChange={changeSendMessage} placeholder="Put your messages here" cols="30" rows='3'
-                                  ref={sendRef} value={props.state.newTextMessage}/>
+                                  ref={sendRef} value={props.messagesPage.newTextMessage}/>
                     </div>
 
                     <div>
