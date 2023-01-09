@@ -3,7 +3,7 @@ import userPhoto from '../../assets/images/user_icon.png'
 import styles from './Users.module.scss'
 
 let Users = (props) => {
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    let pagesCount = Math.max(props.totalUsersCount / props.pageSize)
     let pages = []
 
     for (let i = 1; i <= pagesCount; i++) {
@@ -26,7 +26,7 @@ let Users = (props) => {
                             <img src={u.photos.small != null ? u.photos.small : userPhoto} alt='avatar' className={styles.avatar} />
                         </div>
                         <div>
-                            {u.followed ? <button onClick={() => props.unfollow(u.id)}>Unfollow</button> : <button onClick={() => props.follow(u.id)}>Follow</button>}
+                            {u.followed ? <button className={styles.unfollow} onClick={() => props.unfollow(u.id)}>Unfollow</button> : <button className={styles.follow} onClick={() => props.follow(u.id)}>Follow</button>}
                         </div>
                     </span>
                     <span>
