@@ -3,7 +3,8 @@ let initialState = {
         { id: 0, likesCount: 1, message: 'Good morning' },
         { id: 0, likesCount: 73, message: "It's my first post" }
     ],
-    newTextPost: 'time to programming'
+    newTextPost: 'time to programming',
+    profile: null
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -19,16 +20,18 @@ const profileReducer = (state = initialState, action) => {
                 ...state, 
                 newTextPost: action.newText
             }
+        case 'SET_USER_PROFILE':
+            return{
+                ...state,
+                profile: action.profile
+            }
         default:{
             return state
     }}
 
 }
 
-export let addPostActionCreator = () => {
-    return {type: 'ADD-POST'}
-}
-export let changeNewTextPostActionCreator = (text) => {
-    return {type: 'CHANGE-NEW-TEXT-POST', newText: text}
-}
+export let addPostActionCreator = () => ({type: 'ADD-POST'})
+export let changeNewTextPostActionCreator = (text) => ({type: 'CHANGE-NEW-TEXT-POST', newText: text})
+export let setUserProfile = (profile) => ({type: 'SET_USER_PROFILE', profile})
 export default profileReducer

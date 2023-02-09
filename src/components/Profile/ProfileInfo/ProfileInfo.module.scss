@@ -1,9 +1,14 @@
-.profileCap{
-    img{
+.profileCap {
+    img {
         width: 100%;
     }
 }
-.information{
-    width: auto;
-    padding-left: 50vh;
+.information {
+    padding-left: 10px;
+    margin-top: 10px;
+    
+    section{
+        float: right;
+        margin-right: 10px;
+    }
 }
