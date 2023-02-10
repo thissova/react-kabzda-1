@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./Description.module.scss";
 
 let Description = (props) => {
     return (
@@ -9,61 +10,61 @@ let Description = (props) => {
             About me: {props.profile.aboutMe}
             <br />
 
-            {props.profile.lookingForAJob ? 'Looking for a job' : 'Don\'t looking for a job'}
+            {props.profile.lookingForAJob ? 'Looking for Navlink job' : 'Don\'t looking for Navlink job'}
             <br />
 
             Description about job: {props.profile.lookingForAJobDescription}
             <br />
-            
-            <a onClick={() => {
-                if (props.profile.contacts.facebook === null) {
+
+            <button onClick={() => {
+                if (props.profile.contacts.facebook === null || props.profile.contacts.facebook === "") {
                     alert('I haven\'t got Facebook')
                 } else {
                     window.open(`https://${props.profile.contacts.facebook}`, "_blank")
                 }
-            }}>Facebook</a>
+            }}>Facebook</button>
             <br />
-            <a onClick={() => {
-                if (props.profile.contacts.website === null) {
+            <button onClick={() => {
+                if (props.profile.contacts.website === null || props.profile.contacts.website === "") {
                     alert('I haven\'t got website')
                 } else {
                     window.open(`https://${props.profile.contacts.website}`, "_blank")
                 }
-            }}>Website</a>
+            }}>Website</button>
             <br />
-            <a onClick={() => {
-                if (props.profile.contacts.twitter === null) {
+            <button onClick={() => {
+                if (props.profile.contacts.twitter === null || props.profile.contacts.twitter === "") {
                     alert('I haven\'t got Twitter')
                 } else {
                     window.open(`https://${props.profile.contacts.twitter}`, "_blank")
                 }
-            }}>Twitter</a>
+            }}>Twitter</button>
             <br />
-            <a onClick={() => {
-                if (props.profile.contacts.instagram === null) {
+            <button onClick={() => {
+                if (props.profile.contacts.instagram === null || props.profile.contacts.instagram === "") {
                     alert('I haven\'t got Instagram')
                 } else {
                     window.open(`https://${props.profile.contacts.instagram}`, "_blank")
                 }
-            }}>Instagram</a>
+            }}>Instagram</button>
             <br />
-            <a onClick={() => {
-                if (props.profile.contacts.youtube === null) {
+            <button onClick={() => {
+                if (props.profile.contacts.youtube === null || props.profile.contacts.youtube === "") {
                     alert('I haven\'t got YouTube')
                 } else {
                     window.open(`https://${props.profile.contacts.youtube}`, "_blank")
                 }
-            }}>YouTube</a>
+            }}>YouTube</button>
             <br />
-            <a onClick={() => {
-                if (props.profile.contacts.github === null) {
+            <button onClick={() => {
+                if (props.profile.contacts.github === null || props.profile.contacts.github === "") {
                     alert('I haven\'t got GitHub')
                 } else {
                     window.open(`https://${props.profile.contacts.github}`, "_blank")
                 }
-            }}>GitHub</a>
+            }}>GitHub</button>
             <br />
-            
+
 
         </div>
 

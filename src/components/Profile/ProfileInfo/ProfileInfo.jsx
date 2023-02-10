@@ -9,11 +9,13 @@ const ProfileInfo = (props) => {
     }
 
     for (let contact in props.profile.contacts) {
+        
         if (props.profile.contacts[contact] != null && props.profile.contacts[contact].slice(0, 8) === 'https://') {
-            props.profile.contacts[contact] = props.profile.contacts[contact].replace('https://', '')
+                props.profile.contacts[contact] = props.profile.contacts[contact].replace('https://', '')
+            
         }
     }
-
+    debugger
     return (
         <div className="content">
             <div className={styles.profileCap}>
@@ -22,7 +24,7 @@ const ProfileInfo = (props) => {
             <div className={styles.information}>
                 <img src={props.profile.photos.large} alt='large-ava' />
                 <section>
-                    
+
                     <Description profile={props.profile} />
 
 

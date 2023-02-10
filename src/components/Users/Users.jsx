@@ -4,7 +4,7 @@ import userPhoto from '../../assets/images/user_icon.png'
 import styles from './Users.module.scss'
 
 let Users = (props) => {
-    let pagesCount = Math.max(props.totalUsersCount / props.pageSize)
+    let pagesCount = (props.totalUsersCount / props.pageSize) + 1 
     let pages = []
 
     for (let i = 1; i <= pagesCount; i++) {
