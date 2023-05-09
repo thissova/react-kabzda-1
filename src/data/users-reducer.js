@@ -4,6 +4,8 @@ let initialState = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
+    pagesInLine: 5,
+    multiplier: 0,
 }
 
 const usersReducers = (state = initialState, action) => {
@@ -12,8 +14,8 @@ const usersReducers = (state = initialState, action) => {
             return {
                 ...state,
                 users: state.users.map(u => {
-                    if (u.id === action.userId){
-                        return {...u, followed: true}
+                    if (u.id === action.userId) {
+                        return { ...u, followed: true }
                     }
                     return u
                 })
@@ -22,44 +24,61 @@ const usersReducers = (state = initialState, action) => {
             return {
                 ...state,
                 users: state.users.map(u => {
-                    if (u.id === action.userId){
-                        return {...u, followed: false}
+                    if (u.id === action.userId) {
+                        return { ...u, followed: false }
                     }
                     return u
                 })
             }
         case 'SET_USERS':
-            return{
+            return {
                 ...state,
                 users: action.users
             }
         case 'SET_CURRENT_PAGE':
-            return{
+            return {
                 ...state,
                 currentPage: action.currentPage
             }
         case 'SET_TOTAL_USERS_COUNT_PAGE':
-            return{
+            return {
                 ...state,
                 totalUsersCount: action.usersCount
             }
         case 'SET_IS_FETCHING':
-            return{
+            return {
                 ...state,
                 isFetching: action.isFetching
             }
-        default:{
+        case 'SET_MULTIPLIER_BIGGER':
+            if (state.multiplier >= 0){
+                return {
+                    ...state,
+                    multiplier: state.multiplier + action.multiplier
+                }
+            }
+        case 'SET_MULTIPLIER_SMALLER':
+            if (state.multiplier != 0){
+                return {
+                    ...state,
+                    multiplier: state.multiplier - action.multiplier
+                }
+            }
+        default: {
             return state
-    }}
+        }
+    }
 
 }
 
 
-export const follow = (userId) => ({type: 'FOLLOW', userId })
-export const unfollow = (userId) => ({type: 'UNFOLLOW', userId })
-export const setUsers = (users) => ({type: 'SET_USERS', users })
-export const setCurrentPage = (currentPage) => ({type: 'SET_CURRENT_PAGE', currentPage })
-export const setTotalUsersCount = (usersCount) => ({type: 'SET_TOTAL_USERS_COUNT_PAGE',usersCount })
-export const setIsFetching = (isFetching) => ({type: 'SET_IS_FETCHING', isFetching })
+export const follow = (userId) => ({ type: 'FOLLOW', userId })
+export const unfollow = (userId) => ({ type: 'UNFOLLOW', userId })
+export const setUsers = (users) => ({ type: 'SET_USERS', users })
+export const setCurrentPage = (currentPage) => ({ type: 'SET_CURRENT_PAGE', currentPage })
+export const setTotalUsersCount = (usersCount) => ({ type: 'SET_TOTAL_USERS_COUNT_PAGE', usersCount })
+export const setIsFetching = (isFetching) => ({ type: 'SET_IS_FETCHING', isFetching })
+export const setMultiplierBigger = (multiplier) => ({ type: 'SET_MULTIPLIER_BIGGER', multiplier })
+export const setMultiplierSmaller = (multiplier) => ({ type: 'SET_MULTIPLIER_SMALLER', multiplier })
 
 export default usersReducers

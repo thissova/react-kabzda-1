@@ -4,21 +4,36 @@ import userPhoto from '../../assets/images/user_icon.png'
 import styles from './Users.module.scss'
 
 let Users = (props) => {
-    let pagesCount = (props.totalUsersCount / props.pageSize) + 1 
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    let pagesInLine = props.pagesInLine
     let pages = []
-
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i)
+    let valuesInLine = 5 * props.multiplier
+    let isMultiplierNotNull = () => {
+        if(props.multiplier != 0) 
+        <button onClick={() => props.setMultiplier(-1)}>←</button>
     }
+
+
+    for (let i = 1; i <= pagesInLine; i++) {
+        pages.push(i + valuesInLine)
+    }
+    debugger
     return (
         <div>
-            <div>
+            <div className={styles.pagination}>
+                <span className={props.currentPage === 1 ? styles.selected : styles.unselected} onClick={() => props.onPageChanged(1)}>
+                    {1 + ' | '}
+                </span>
+                <button onClick={() => props.setMultiplierSmaller(1)}>←</button>
                 {pages.map(p => {
                     return <span className={props.currentPage === p ? styles.selected : styles.unselected} onClick={() => props.onPageChanged(p)}>
                         {p + ' '}
                     </span>
                 })}
-
+                <button onClick={() => props.setMultiplierBigger(1)}>→</button>
+                <span className={props.currentPage === pagesCount ? styles.selected : styles.unselected} onClick={() => props.onPageChanged(pagesCount)}>
+                    {' |' + pagesCount + ' '}
+                </span>
             </div>
             {
                 props.users.map(u => <div key={u.id}>

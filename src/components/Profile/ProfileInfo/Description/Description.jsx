@@ -10,7 +10,7 @@ let Description = (props) => {
             About me: {props.profile.aboutMe}
             <br />
 
-            {props.profile.lookingForAJob ? 'Looking for Navlink job' : 'Don\'t looking for Navlink job'}
+            {props.profile.lookingForAJob ? 'Looking for a job' : 'Don\'t looking for a job'}
             <br />
 
             Description about job: {props.profile.lookingForAJobDescription}
