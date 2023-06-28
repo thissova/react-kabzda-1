@@ -15,7 +15,7 @@ const ProfileInfo = (props) => {
             
         }
     }
-    debugger
+    
     return (
         <div className="content">
             <div className={styles.profileCap}>

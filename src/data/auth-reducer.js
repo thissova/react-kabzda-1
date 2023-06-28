@@ -1,7 +1,8 @@
 let initialState = {
     id: null,
     email: null,
-    login: null
+    login: null,
+    isAuth: false
 }
 
 const authReducers = (state = initialState, action) => {
@@ -9,7 +10,8 @@ const authReducers = (state = initialState, action) => {
         case 'SET_USER_DATA':
             return {
                 ...state,
-                ...action.data
+                ...action.data,
+                isAuth: true
             }
         default:{
             return state
@@ -18,7 +20,7 @@ const authReducers = (state = initialState, action) => {
 }
 
 
-export const setUserData = (id, email, login) => ({type: 'SET_USER_DATA',data:{id, email, login} })
+export const setAuthUserData = (id, email, login) => ({type: 'SET_USER_DATA',data:{id, email, login} })
 
 
 export default authReducers

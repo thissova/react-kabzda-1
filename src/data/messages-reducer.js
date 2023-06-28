@@ -51,8 +51,7 @@ const messagesReducer = (state = initialState, action) => {
                 ]
             }
 
-        case 'CHANGE-NEW-TEXT-MESSAGE':
-            debugger
+        case 'CHANGE-NEW-TEXT-MESSAGE':           
             return {
                 ...state,
                 newTextMessage: action.newText

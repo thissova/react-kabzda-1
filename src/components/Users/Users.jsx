@@ -7,7 +7,7 @@ let Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
     let pagesInLine = props.pagesInLine
     let pages = []
-    let valuesInLine = 5 * props.multiplier
+    let valuesInLine = pagesInLine * props.multiplier
     let isMultiplierNotNull = () => {
         if(props.multiplier != 0) 
         <button onClick={() => props.setMultiplier(-1)}>←</button>
@@ -17,7 +17,7 @@ let Users = (props) => {
     for (let i = 1; i <= pagesInLine; i++) {
         pages.push(i + valuesInLine)
     }
-    debugger
+    
     return (
         <div>
             <div className={styles.pagination}>
