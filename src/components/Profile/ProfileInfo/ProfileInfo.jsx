@@ -2,6 +2,8 @@ import React from "react";
 import Preloader from "../../common/Preloader/Preloader";
 import Description from "./Description/Description";
 import styles from './ProfileInfo.module.scss'
+import userPhoto from '../../../assets/images/user_icon.png'
+
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -22,7 +24,7 @@ const ProfileInfo = (props) => {
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/NYC_Top_of_the_Rock_Pano_banner.jpg/1200px-NYC_Top_of_the_Rock_Pano_banner.jpg" alt="profile-cap" />
             </div>
             <div className={styles.information}>
-                <img src={props.profile.photos.large} alt='large-ava' />
+                {props.profile.photos.large ? <img src={props.profile.photos.large}/> : <img src={userPhoto} />}
                 <section>
 
                     <Description profile={props.profile} />

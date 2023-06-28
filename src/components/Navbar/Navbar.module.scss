@@ -5,13 +5,18 @@
 }
 
 .item {
+    padding-top: 5px;
     a {
         color: white;
         text-decoration: none;
+        
+        img {
+            width: 30px;
+            height: 30px;
+        }
     }
 
     a.active {
         color: #c5c5c5;
     }
-
 }
