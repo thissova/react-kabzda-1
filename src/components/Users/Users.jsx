@@ -9,10 +9,7 @@ let Users = (props) => {
     let pagesInLine = props.pagesInLine
     let pages = []
     let valuesInLine = pagesInLine * props.multiplier
-    let isMultiplierNotNull = () => {
-        if (props.multiplier != 0)
-            <button onClick={() => props.setMultiplier(-1)}>←</button>
-    }
+
 
 
     for (let i = 1; i <= pagesInLine; i++) {
@@ -47,15 +44,30 @@ let Users = (props) => {
                         <div>
                             {u.followed ? <button className={styles.unfollow} onClick={
                                 () => {
-                                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`).then(response => {
-                                        this.props.setUsers(response.data.items);
-                                        this.props.setTotalUsersCount(response.data.totalCount);
-                                        this.props.setIsFetching(false)
+                                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
+                                        withCredentials: true,
+                                        headers: {
+                                            'API-KEY': "1f689808-b4f6-458e-b6ce-28ecaf3a4c6a"
+                                        }
+                                    }).then(response => {
+                                        if (response.data.resultCode === 0) {
+                                            props.unfollow(u.id);
+                                        }
                                     })
-                                    props.unfollow(u.id);
                                 }
                             }>Unfollow</button> : <button className={styles.follow} onClick={
-                                () => props.follow(u.id)
+                                () => {
+                                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, { 
+                                        withCredentials: true,
+                                        headers: {
+                                            'API-KEY': "1f689808-b4f6-458e-b6ce-28ecaf3a4c6a"
+                                        }
+                                    }).then(response => {
+                                        if (response.data.resultCode === 0) {
+                                            props.follow(u.id);
+                                        }
+                                    })
+                                }
                             }>Follow</button>}
                         </div>
                     </span>
