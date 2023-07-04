@@ -22,6 +22,20 @@ class UsersContainer extends React.Component {
             this.props.setUsers(data.items);
         })
     }
+    followRequest = (userId) => {
+        usersAPI.follow(userId).then(data => {
+            if (data.resultCode === 0) {
+                this.props.follow(userId);
+            }
+        })
+    }
+    unfollowRequest = (userId) => {
+        usersAPI.unfollow(userId).then(data => {
+            if (data.resultCode === 0) {
+                this.props.unfollow(userId);
+            }
+        })
+    }
 
     render() {
         return (<>
@@ -37,6 +51,8 @@ class UsersContainer extends React.Component {
                 multiplier={this.props.multiplier}
                 setMultiplierBigger={this.props.setMultiplierBigger}
                 setMultiplierSmaller={this.props.setMultiplierSmaller}
+                followRequest={this.followRequest}
+                unfollowRequest={this.unfollowRequest}
             />
         </>
         )

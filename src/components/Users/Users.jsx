@@ -44,29 +44,11 @@ let Users = (props) => {
                         <div>
                             {u.followed ? <button className={styles.unfollow} onClick={
                                 () => {
-                                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                                        withCredentials: true,
-                                        headers: {
-                                            'API-KEY': "1f689808-b4f6-458e-b6ce-28ecaf3a4c6a"
-                                        }
-                                    }).then(response => {
-                                        if (response.data.resultCode === 0) {
-                                            props.unfollow(u.id);
-                                        }
-                                    })
+                                    props.unfollowRequest(u.id)
                                 }
                             }>Unfollow</button> : <button className={styles.follow} onClick={
                                 () => {
-                                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, { 
-                                        withCredentials: true,
-                                        headers: {
-                                            'API-KEY': "1f689808-b4f6-458e-b6ce-28ecaf3a4c6a"
-                                        }
-                                    }).then(response => {
-                                        if (response.data.resultCode === 0) {
-                                            props.follow(u.id);
-                                        }
-                                    })
+                                    props.followRequest(u.id)
                                 }
                             }>Follow</button>}
                         </div>
