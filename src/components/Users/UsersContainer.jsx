@@ -1,40 +1,32 @@
 import React from "react";
 import Users from "./Users";
 import { connect } from "react-redux";
-import { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, setIsFetching, setMultiplierBigger, setMultiplierSmaller } from "../../data/users-reducer";
+import {
+    follow,
+    unfollow,
+    setUsers,
+    setCurrentPage,
+    setMultiplierBigger,
+    setMultiplierSmaller,
+    getUsersThunkCreator,
+    followUserThunkCreator,
+    unfollowUserThunkCreator
+} from "../../data/users-reducer";
 import Preloader from "../common/Preloader/Preloader";
-import { usersAPI } from "../../api/api";
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.setIsFetching(true)
-        usersAPI.getUsers(this.props.currentPage,this.props.pageSize).then(data => {
-            this.props.setUsers(data.items);
-            this.props.setTotalUsersCount(data.totalCount);
-            this.props.setIsFetching(false)
-        })
+        this.props.getUsers(this.props.currentPage,this.props.pageSize)
+        debugger
     }
 
     onPageChanged = (pageNumber) => {
-        this.props.setCurrentPage(pageNumber)
-        this.props.setIsFetching(true) 
-        usersAPI.getUsers(pageNumber,this.props.pageSize).then(data => {
-            this.props.setIsFetching(false)
-            this.props.setUsers(data.items);
-        })
+        this.props.getUsers(pageNumber, this.props.pageSize)
     }
     followRequest = (userId) => {
-        usersAPI.follow(userId).then(data => {
-            if (data.resultCode === 0) {
-                this.props.follow(userId);
-            }
-        })
+        this.props.followRequest(userId)
     }
     unfollowRequest = (userId) => {
-        usersAPI.unfollow(userId).then(data => {
-            if (data.resultCode === 0) {
-                this.props.unfollow(userId);
-            }
-        })
+        this.props.unfollowRequest(userId)
     }
 
     render() {
@@ -53,6 +45,7 @@ class UsersContainer extends React.Component {
                 setMultiplierSmaller={this.props.setMultiplierSmaller}
                 followRequest={this.followRequest}
                 unfollowRequest={this.unfollowRequest}
+                followingInProgress={this.props.followingInProgress}
             />
         </>
         )
@@ -66,7 +59,8 @@ let mapStateToProps = (state => {
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
         pagesInLine: state.usersPage.pagesInLine,
-        multiplier: state.usersPage.multiplier
+        multiplier: state.usersPage.multiplier,
+        followingInProgress: state.usersPage.followingInProgress
     }
 })
 
@@ -74,5 +68,5 @@ let mapStateToProps = (state => {
 
 
 export default connect(mapStateToProps, {
-    follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, setIsFetching, setMultiplierBigger, setMultiplierSmaller
+    follow, unfollow, setUsers, setCurrentPage, setMultiplierBigger, setMultiplierSmaller, getUsers: getUsersThunkCreator, followRequest: followUserThunkCreator, unfollowRequest: unfollowUserThunkCreator
 })(UsersContainer)

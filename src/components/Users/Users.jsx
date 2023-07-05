@@ -1,8 +1,8 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import userPhoto from '../../assets/images/user_icon.png'
 import styles from './Users.module.scss'
-import axios from "axios";
+
 
 let Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
@@ -11,25 +11,26 @@ let Users = (props) => {
     let valuesInLine = pagesInLine * props.multiplier
 
 
-
     for (let i = 1; i <= pagesInLine; i++) {
         pages.push(i + valuesInLine)
     }
-
     return (
         <div>
             <div className={styles.pagination}>
-                <span className={props.currentPage === 1 ? styles.selected : styles.unselected} onClick={() => props.onPageChanged(1)}>
+                <span className={props.currentPage === 1 ? styles.selected : styles.unselected}
+                      onClick={() => props.onPageChanged(1)}>
                     {1 + ' | '}
                 </span>
                 <button onClick={() => props.setMultiplierSmaller(1)}>←</button>
                 {pages.map(p => {
-                    return <span className={props.currentPage === p ? styles.selected : styles.unselected} onClick={() => props.onPageChanged(p)}>
+                    return <span className={props.currentPage === p ? styles.selected : styles.unselected}
+                                 onClick={() => props.onPageChanged(p)}>
                         {p + ' '}
                     </span>
                 })}
                 <button onClick={() => props.setMultiplierBigger(1)}>→</button>
-                <span className={props.currentPage === pagesCount ? styles.selected : styles.unselected} onClick={() => props.onPageChanged(pagesCount)}>
+                <span className={props.currentPage === pagesCount ? styles.selected : styles.unselected}
+                      onClick={() => props.onPageChanged(pagesCount)}>
                     {' |' + pagesCount + ' '}
                 </span>
             </div>
@@ -38,15 +39,19 @@ let Users = (props) => {
                     <span>
                         <div>
                             <NavLink to={'/profile/' + u.id}>
-                                <img src={u.photos.small != null ? u.photos.small : userPhoto} alt='avatar' className={styles.avatar} />
+                                <img src={u.photos.small != null ? u.photos.small : userPhoto} alt='avatar'
+                                     className={styles.avatar}/>
                             </NavLink>
                         </div>
                         <div>
-                            {u.followed ? <button className={styles.unfollow} onClick={
+                            {u.followed ? <button disabled={props.followingInProgress.some(id => id === u.id)}
+                                                  className={styles.unfollow} onClick={
                                 () => {
+
                                     props.unfollowRequest(u.id)
                                 }
-                            }>Unfollow</button> : <button className={styles.follow} onClick={
+                            }>Unfollow</button> : <button disabled={props.followingInProgress.some(id => id === u.id)}
+                                                          className={styles.follow} onClick={
                                 () => {
                                     props.followRequest(u.id)
                                 }

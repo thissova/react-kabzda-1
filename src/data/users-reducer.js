@@ -1,3 +1,4 @@
+import { usersAPI } from "../api/api"
 let initialState = {
     users: [],
     pageSize: 5,
@@ -6,6 +7,7 @@ let initialState = {
     isFetching: false,
     pagesInLine: 5,
     multiplier: 0,
+    followingInProgress: []
 }
 
 const usersReducers = (state = initialState, action) => {
@@ -50,20 +52,29 @@ const usersReducers = (state = initialState, action) => {
                 ...state,
                 isFetching: action.isFetching
             }
+        case 'SET_IS_FOLLOWING_IN_PROGRESS':
+            return {
+                ...state,
+                followingInProgress: action.followingInProgress
+                    ? [...state.followingInProgress, action.userId]
+                    : state.followingInProgress.filter(id => id != action.userId)
+            }
         case 'SET_MULTIPLIER_BIGGER':
-            if (state.multiplier >= 0){
+            if (state.multiplier >= 0) {
                 return {
                     ...state,
                     multiplier: state.multiplier + action.multiplier
                 }
             }
+            break
         case 'SET_MULTIPLIER_SMALLER':
-            if (state.multiplier != 0){
+            if (state.multiplier !== 0) {
                 return {
                     ...state,
                     multiplier: state.multiplier - action.multiplier
                 }
             }
+            break
         default: {
             return state
         }
@@ -77,8 +88,43 @@ export const unfollow = (userId) => ({ type: 'UNFOLLOW', userId })
 export const setUsers = (users) => ({ type: 'SET_USERS', users })
 export const setCurrentPage = (currentPage) => ({ type: 'SET_CURRENT_PAGE', currentPage })
 export const setTotalUsersCount = (usersCount) => ({ type: 'SET_TOTAL_USERS_COUNT_PAGE', usersCount })
-export const setIsFetching = (isFetching) => ({ type: 'SET_IS_FETCHING', isFetching })
 export const setMultiplierBigger = (multiplier) => ({ type: 'SET_MULTIPLIER_BIGGER', multiplier })
+export const setIsFetching = (isFetching) => ({ type: 'SET_IS_FETCHING', isFetching })
+export const setIsFollowingInProgress = (followingInProgress, userId) => ({ type: 'SET_IS_FOLLOWING_IN_PROGRESS', followingInProgress, userId })
 export const setMultiplierSmaller = (multiplier) => ({ type: 'SET_MULTIPLIER_SMALLER', multiplier })
+
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+    return (dispatch) => {
+        dispatch(setIsFetching(true))
+        usersAPI.getUsers(currentPage, pageSize).then(data => {
+            dispatch(setUsers(data.items));
+            dispatch(setTotalUsersCount(data.totalCount));
+            dispatch(setIsFetching(false))
+        })
+    }
+}
+
+export const followUserThunkCreator = (userId) => {
+    return (dispatch) => {
+        dispatch(setIsFollowingInProgress(true, userId))
+        usersAPI.follow(userId).then(data => {
+            if (data.resultCode === 0) {
+                dispatch(follow(userId))
+                dispatch(setIsFollowingInProgress(false, userId))
+            }
+        })
+    }
+}
+export const unfollowUserThunkCreator = (userId) => {
+    return (dispatch) => {
+        dispatch(setIsFollowingInProgress(true, userId))
+        usersAPI.unfollow(userId).then(data => {
+            if (data.resultCode === 0) {
+                dispatch(unfollow(userId))
+                dispatch(setIsFollowingInProgress(false, userId))
+            }
+        })
+    }
+}
 
 export default usersReducers

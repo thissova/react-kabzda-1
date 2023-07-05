@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./Description.module.scss";
 
 let Description = (props) => {
     return (
