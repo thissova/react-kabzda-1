@@ -1,3 +1,5 @@
+import {profileAPI} from "../api/api";
+
 let initialState = {
     posts: [
         { id: 0, likesCount: 1, message: 'Good morning' },
@@ -34,4 +36,9 @@ const profileReducer = (state = initialState, action) => {
 export let addPostActionCreator = () => ({type: 'ADD-POST'})
 export let changeNewTextPostActionCreator = (text) => ({type: 'CHANGE-NEW-TEXT-POST', newText: text})
 export let setUserProfile = (profile) => ({type: 'SET_USER_PROFILE', profile})
+export const getUserProfileThunkCreator = (userId) => (dispatch)=> {
+    profileAPI.getUserProfile(userId).then(data => {
+        dispatch(setUserProfile(data))
+    })
+}
 export default profileReducer

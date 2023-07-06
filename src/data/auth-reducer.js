@@ -1,3 +1,5 @@
+import {authAPI} from "../api/api";
+
 let initialState = {
     id: null,
     email: null,
@@ -13,14 +15,24 @@ const authReducers = (state = initialState, action) => {
                 ...action.data,
                 isAuth: true
             }
-        default:{
+        default: {
             return state
-    }}
+        }
+    }
 
 }
 
 
-export const setAuthUserData = (id, email, login) => ({type: 'SET_USER_DATA',data:{id, email, login} })
+export const setAuthUserData = (id, email, login) => ({type: 'SET_USER_DATA', data: {id, email, login}})
 
+export const authMeThunkCreator = () => (dispatch) => {
+    authAPI.authMe().then(data => {
+            if (data.resultCode === 0) {
+                let {id, email, login} = data.data
+                dispatch(setAuthUserData(id, email, login))
+            }
+        }
+    )
+}
 
 export default authReducers
