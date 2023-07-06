@@ -13,6 +13,7 @@ import {
     unfollowUserThunkCreator
 } from "../../data/users-reducer";
 import Preloader from "../common/Preloader/Preloader";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 class UsersContainer extends React.Component {
     componentDidMount() {
         this.props.getUsers(this.props.currentPage,this.props.pageSize)
@@ -67,6 +68,6 @@ let mapStateToProps = (state => {
 
 
 
-export default connect(mapStateToProps, {
+export default withAuthRedirect( connect(mapStateToProps, {
     follow, unfollow, setUsers, setCurrentPage, setMultiplierBigger, setMultiplierSmaller, getUsers: getUsersThunkCreator, followRequest: followUserThunkCreator, unfollowRequest: unfollowUserThunkCreator
-})(UsersContainer)
+})(UsersContainer))

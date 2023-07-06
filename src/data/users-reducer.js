@@ -57,7 +57,7 @@ const usersReducers = (state = initialState, action) => {
                 ...state,
                 followingInProgress: action.followingInProgress
                     ? [...state.followingInProgress, action.userId]
-                    : state.followingInProgress.filter(id => id != action.userId)
+                    : state.followingInProgress.filter(id => id !== action.userId)
             }
         case 'SET_MULTIPLIER_BIGGER':
             if (state.multiplier >= 0) {
