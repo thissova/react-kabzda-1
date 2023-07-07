@@ -8,9 +8,23 @@
         width: 45px;
     }
 }
+
 .loginBlock {
     float: right;
     color: aliceblue;
     margin-right: 10px;
     margin-top: 10px;
+
+    a {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline;
+        margin: 0;
+        padding: 0;
+        font-size: 95%;
+        color: white;
+    }
 }
+
