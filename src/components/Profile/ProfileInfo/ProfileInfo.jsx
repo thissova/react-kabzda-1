@@ -26,7 +26,7 @@ const ProfileInfo = (props) => {
                 <section>
                     <Description profile={props.profile} />
                 </section>
-                    <div><Status className={styles.status} status={'status'}/></div>
+                    <div><Status className={styles.status} status={props.status} setStatus={props.setStatus}/></div>
             </div>
         </div >
     )
