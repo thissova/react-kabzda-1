@@ -99,6 +99,7 @@ export const getUsersThunkCreator = (currentPage, pageSize) => {
         usersAPI.getUsers(currentPage, pageSize).then(data => {
             dispatch(setUsers(data.items));
             dispatch(setTotalUsersCount(data.totalCount));
+            dispatch(setCurrentPage(currentPage))
             dispatch(setIsFetching(false))
         })
     }

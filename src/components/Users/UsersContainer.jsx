@@ -14,10 +14,10 @@ import {
 } from "../../data/users-reducer";
 import Preloader from "../common/Preloader/Preloader";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 class UsersContainer extends React.Component {
     componentDidMount() {
         this.props.getUsers(this.props.currentPage,this.props.pageSize)
-        debugger
     }
 
     onPageChanged = (pageNumber) => {
@@ -65,9 +65,8 @@ let mapStateToProps = (state => {
     }
 })
 
-
-
-
-export default withAuthRedirect( connect(mapStateToProps, {
-    follow, unfollow, setUsers, setCurrentPage, setMultiplierBigger, setMultiplierSmaller, getUsers: getUsersThunkCreator, followRequest: followUserThunkCreator, unfollowRequest: unfollowUserThunkCreator
-})(UsersContainer))
+export default compose(withAuthRedirect,
+    connect(mapStateToProps, {
+    follow, unfollow, setUsers, setCurrentPage, setMultiplierBigger, setMultiplierSmaller, getUsers: getUsersThunkCreator,
+        followRequest: followUserThunkCreator, unfollowRequest: unfollowUserThunkCreator
+}))(UsersContainer)
