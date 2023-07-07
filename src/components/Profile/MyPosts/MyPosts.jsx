@@ -1,6 +1,7 @@
 import React from "react";
 import styles from './MyPosts.module.scss'
 import Post from "./Post/Post";
+import ChangeTextArea from "./ChangeTextArea";
 const MyPosts = (props) => {
     
     let postsElements = props.posts.map(post =>
@@ -13,17 +14,12 @@ const MyPosts = (props) => {
         props.addPost()
         
     }
-    let changeNewTextPost = () => {
-        let text = postRef.current.value
-        props.changeNewTextPost(text)
-    }
+
     return (
         <div className={styles.content}>
             <h2>My posts</h2>
             <div>
-                <div>
-                    <textarea onChange={changeNewTextPost} name="new post" placeholder="Add new post" ref={postRef} value={props.newTextPost}/>
-                </div>
+                <ChangeTextArea newTextPost={props.newTextPost} changeNewTextPost={props.changeNewTextPost} postRef={postRef}/>
                 <div>
                     <button onClick={addPost}>Add post</button>
                 </div>
