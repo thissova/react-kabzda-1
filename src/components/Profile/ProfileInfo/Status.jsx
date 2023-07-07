@@ -3,6 +3,7 @@ import React from "react";
 export default class Status extends React.Component {
     state = {
         editMode: false,
+        status: this.props.status
     }
     activateEditMode = () => {
         this.setState({
@@ -13,16 +14,29 @@ export default class Status extends React.Component {
         this.setState({
             editMode: false
         })
-        this.props.setStatus(this.props.status)
+        this.props.setStatus(this.state.status)
     }
     onChange = (e) => {
-        this.props.setStatus(e.currentTarget.value)
+        this.setState({
+            status: e.currentTarget.value
+        })
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            });
+        }
+
+        console.log("componentDidUpdate")
     }
 
     render() {
         return this.state.editMode ?
             <input onChange={this.onChange} onBlur={this.deactivateEditMode} autoFocus={true}
-                   value={this.props.status}/> :
-            <div onClick={this.activateEditMode}>{this.props.status || "-------"}{}</div>
+                   value={this.state.status}/> :
+            <div onClick={this.activateEditMode}>{this.state.status || "-------"}{}</div>
     }
 }
