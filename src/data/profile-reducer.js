@@ -15,7 +15,7 @@ const profileReducer = (state = initialState, action) => {
         case 'ADD-POST':
             return {
                 ...state,
-                posts: [{id: 0, likesCount: 0, message: state.newTextPost}, ...state.posts],
+                posts: [{id: 0, likesCount: 0, message: action.message}, ...state.posts],
                 newTextPost: ''
             }
         case 'CHANGE-NEW-TEXT-POST':
@@ -41,7 +41,7 @@ const profileReducer = (state = initialState, action) => {
 
 }
 
-export let addPostActionCreator = () => ({type: 'ADD-POST'})
+export let addPostActionCreator = (message) => ({type: 'ADD-POST', message})
 export let changeNewTextPostActionCreator = (text) => ({type: 'CHANGE-NEW-TEXT-POST', newText: text})
 export let setUserProfile = (profile) => ({type: 'SET_USER_PROFILE', profile})
 export let setStatus = (status) => ({type: 'SET_STATUS', status})
