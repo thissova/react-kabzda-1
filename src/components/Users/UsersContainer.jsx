@@ -13,7 +13,6 @@ import {
     unfollowUserThunkCreator
 } from "../../data/users-reducer";
 import Preloader from "../common/Preloader/Preloader";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 class UsersContainer extends React.Component {
     componentDidMount() {
@@ -47,6 +46,7 @@ class UsersContainer extends React.Component {
                 followRequest={this.followRequest}
                 unfollowRequest={this.unfollowRequest}
                 followingInProgress={this.props.followingInProgress}
+                isAuth={this.props.isAuth}
             />
         </>
         )
@@ -61,11 +61,12 @@ let mapStateToProps = (state => {
         isFetching: state.usersPage.isFetching,
         pagesInLine: state.usersPage.pagesInLine,
         multiplier: state.usersPage.multiplier,
-        followingInProgress: state.usersPage.followingInProgress
+        followingInProgress: state.usersPage.followingInProgress,
+        isAuth: state.auth.isAuth
     }
 })
 
-export default compose(withAuthRedirect,
+export default compose(
     connect(mapStateToProps, {
     follow, unfollow, setUsers, setCurrentPage, setMultiplierBigger, setMultiplierSmaller, getUsers: getUsersThunkCreator,
         followRequest: followUserThunkCreator, unfollowRequest: unfollowUserThunkCreator
