@@ -21,14 +21,15 @@ let Users = (props) => {
                       onClick={() => props.onPageChanged(1)}>
                     {1 + ' | '}
                 </span>
-                <button onClick={() => props.setMultiplierSmaller(1)}>←</button>
+                <button disabled={props.multiplier === 0} onClick={() => props.setMultiplierSmaller(1)}>←</button>
                 {pages.map(p => {
                     return <span className={props.currentPage === p ? styles.selected : styles.unselected}
                                  onClick={() => props.onPageChanged(p)}>
                         {p + ' '}
                     </span>
                 })}
-                <button onClick={() => props.setMultiplierBigger(1)}>→</button>
+                <button disabled={props.multiplier === Math.floor(pagesCount / pagesInLine)} onClick={() => props.setMultiplierBigger(1)}>→
+                </button>
                 <span className={props.currentPage === pagesCount ? styles.selected : styles.unselected}
                       onClick={() => props.onPageChanged(pagesCount)}>
                     {' |' + pagesCount + ' '}
