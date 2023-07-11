@@ -1,40 +1,27 @@
-import React from "react";
+import React, {useState} from "react";
 
-export default class Status extends React.Component {
-    state = {
-        editMode: false,
-        status: this.props.status
+const Status = (props) => {
+
+    let [editMode, setEditMode] = useState(false);
+    let [status, setStatus] = useState(props.status);
+    const activateEditMode = () => {
+        setEditMode(true)
     }
-    activateEditMode = () => {
-        this.setState({
-            editMode: true
-        })
-    }
-    deactivateEditMode = () => {
-        this.setState({
-            editMode: false
-        })
-        this.props.setStatus(this.state.status)
-    }
-    onChange = (e) => {
-        this.setState({
-            status: e.currentTarget.value
-        })
+    const deactivateEditMode = () => {
+        setEditMode(false)
+        props.setStatus(status)
     }
 
-    componentDidUpdate(prevProps, prevState) {
-
-        if (prevProps.status !== this.props.status) {
-            this.setState({
-                status: this.props.status
-            });
-        }
-     }
-
-    render() {
-        return this.state.editMode ?
-            <input onChange={this.onChange} onBlur={this.deactivateEditMode} autoFocus={true}
-                   value={this.state.status}/> :
-            <div onClick={this.activateEditMode}>{this.state.status || "-------"}{}</div>
+    const onStatusChange = (e) => {
+        setStatus(e.currentTarget.value)
     }
+
+    return (<div>
+            {editMode ?  <input onChange={onStatusChange} onBlur={deactivateEditMode} autoFocus={true}
+                    value={status}/> :
+            <div onClick={activateEditMode}>{props.status || "-------"}</div>}
+        </div>
+    )
 }
+
+export default Status
