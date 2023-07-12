@@ -2,7 +2,7 @@ import {profileAPI} from "../api/api";
 
 let initialState = {
     posts: [
-        {id: 0, likesCount: 1, message: 'Good morning'},
+        {id: 1, likesCount: 1, message: 'Good morning'},
         {id: 0, likesCount: 73, message: "It's my first post"}
     ],
     profile: null,
@@ -32,6 +32,11 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 status: action.status
             }
+        case 'DELETE-POST':
+            return {
+                ...state,
+                posts: state.posts.filter(p => p.id !== action.postId)
+            }
 
         default: {
             return state
@@ -41,7 +46,7 @@ const profileReducer = (state = initialState, action) => {
 }
 
 export let addPostActionCreator = (message) => ({type: 'ADD-POST', message})
-export let changeNewTextPostActionCreator = (text) => ({type: 'CHANGE-NEW-TEXT-POST', newText: text})
+export let deletePostActionCreator = (postId) => ({type: 'DELETE-POST', postId})
 export let setUserProfile = (profile) => ({type: 'SET_USER_PROFILE', profile})
 export let setStatus = (status) => ({type: 'SET_STATUS', status})
 export const getUserProfileThunkCreator = (userId) => (dispatch) => {
