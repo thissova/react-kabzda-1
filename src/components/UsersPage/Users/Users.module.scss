@@ -1,0 +1,18 @@
+.avatar{
+    width: 100px;
+    height: 100px;
+}
+.follow{
+    background-color: rgb(26, 0, 97);
+    color: lime;
+}
+.unfollow{
+    background-color: rgb(26, 0, 97);
+    color: rgb(255, 0, 0);
+}
+button{
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    display: inline-block;
+}

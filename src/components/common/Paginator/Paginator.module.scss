@@ -1,21 +1,9 @@
-.avatar{
-    width: 100px;
-    height: 100px;
-}
 .selected{
     font-weight: bold;
     cursor: pointer;
 }
 .unselected{
     cursor: pointer;
-}
-.follow{
-    background-color: rgb(26, 0, 97);
-    color: lime;
-}
-.unfollow{
-    background-color: rgb(26, 0, 97);
-    color: rgb(255, 0, 0);
 }
 .pagination{
     margin-left: 40vh;

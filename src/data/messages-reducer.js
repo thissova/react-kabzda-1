@@ -28,9 +28,12 @@ let initialState = {
         },
     ],
 }
+
+const SEND_MESSAGE = "SEND_MESSAGE"
+const CHANGE_NEW_TEXT_MESSAGE = "'CHANGE-NEW-TEXT-MESSAGE'"
 const messagesReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'SEND-MESSAGE':
+        case SEND_MESSAGE:
             let body = action.newMessageBody
             return {
                 ...state, 
@@ -43,7 +46,7 @@ const messagesReducer = (state = initialState, action) => {
                 ]
             }
 
-        case 'CHANGE-NEW-TEXT-MESSAGE':           
+        case CHANGE_NEW_TEXT_MESSAGE:
             return {
                 ...state,
                 newTextMessage: action.newText
@@ -55,11 +58,11 @@ const messagesReducer = (state = initialState, action) => {
 
 }
 export let sendMessageActionCreator = (newMessageBody) => {
-    return {type: 'SEND-MESSAGE', newMessageBody}
+    return {type: SEND_MESSAGE, newMessageBody}
 }
 
 export let changeSendMessageActionCreator = (text) => {
-    return {type: 'CHANGE-NEW-TEXT-MESSAGE', newText: text}
+    return {type: CHANGE_NEW_TEXT_MESSAGE, newText: text}
 }
 
 export default messagesReducer

@@ -3,9 +3,11 @@ import {authMeThunkCreator} from "./auth-reducer";
 let initialState = {
     initialized: false
 }
+
+const INITIALIZED_SUCCESS = "INITIALIZED_SUCCESS"
  const appReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "INITIALIZED_SUCCESS":
+        case INITIALIZED_SUCCESS:
             return {
                 ...state,
                 initialized: true
@@ -18,7 +20,7 @@ let initialState = {
 }
 
 
-export const setInitialized = () => ({type: 'INITIALIZED_SUCCESS'})
+export const setInitialized = () => ({type: INITIALIZED_SUCCESS})
 
 export const initializeApp = () => (dispatch) => {
     let promise = dispatch(authMeThunkCreator())

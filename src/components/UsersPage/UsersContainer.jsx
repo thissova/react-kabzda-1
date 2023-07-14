@@ -1,5 +1,5 @@
 import React from "react";
-import Users from "./Users";
+import UsersPage from "./UsersPage";
 import { connect } from "react-redux";
 import {
     follow,
@@ -40,20 +40,20 @@ class UsersContainer extends React.Component {
     render() {
         return (<>
             {this.props.isFetching ? <Preloader /> : null}
-            <Users totalUsersCount={this.props.totalUsersCount}
-                pageSize={this.props.pageSize}
-                currentPage={this.props.currentPage}
-                onPageChanged={this.onPageChanged}
-                users={this.props.users}
-                follow={this.props.follow}
-                unfollow={this.props.unfollow}
-                pagesInLine={this.props.pagesInLine}
-                multiplier={this.props.multiplier}
-                setMultiplierBigger={this.props.setMultiplierBigger}
-                setMultiplierSmaller={this.props.setMultiplierSmaller}
-                followRequest={this.followRequest}
-                unfollowRequest={this.unfollowRequest}
-                followingInProgress={this.props.followingInProgress}
+            <UsersPage totalUsersCount={this.props.totalUsersCount}
+                       pageSize={this.props.pageSize}
+                       currentPage={this.props.currentPage}
+                       onPageChanged={this.onPageChanged}
+                       users={this.props.users}
+                       follow={this.props.follow}
+                       unfollow={this.props.unfollow}
+                       pagesInLine={this.props.pagesInLine}
+                       multiplier={this.props.multiplier}
+                       setMultiplierBigger={this.props.setMultiplierBigger}
+                       setMultiplierSmaller={this.props.setMultiplierSmaller}
+                       followRequest={this.followRequest}
+                       unfollowRequest={this.unfollowRequest}
+                       followingInProgress={this.props.followingInProgress}
             />
         </>
         )
