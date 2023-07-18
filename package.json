@@ -37,7 +37,10 @@
   "jest": {
     "transformIgnorePatterns": [
       "node_modules/(?!(react-leaflet|@react-leaflet|d3-*|axios))"
-    ]
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less|scss)$": "identity-obj-proxy"
+    }
   },
   "browserslist": {
     "production": [
@@ -52,6 +55,8 @@
     ]
   },
   "devDependencies": {
+    "identity-obj-proxy": "^3.0.0",
+    "react-test-renderer": "^18.2.0",
     "sass": "^1.54.4"
   }
 }

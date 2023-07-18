@@ -3,7 +3,7 @@ import Preloader from "../../common/Preloader/Preloader";
 import Description from "./Description/Description";
 import styles from './ProfileInfo.module.scss'
 import userPhoto from '../../../assets/images/user_icon.png'
-import Status from "./Status";
+import ProfileStatus from "./Status";
 
 
 const ProfileInfo = (props) => {
@@ -26,7 +26,7 @@ const ProfileInfo = (props) => {
                 <section>
                     <Description profile={props.profile} />
                 </section>
-                    <div><Status className={styles.status} status={props.status} setStatus={props.setStatus}/></div>
+                    <div><ProfileStatus className={styles.status} status={props.status} setStatus={props.setStatus}/></div>
             </div>
         </div >
     )
