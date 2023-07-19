@@ -1,4 +1,5 @@
 import React from "react";
+import "./Description.module.scss"
 
 let Description = (props) => {
     return (

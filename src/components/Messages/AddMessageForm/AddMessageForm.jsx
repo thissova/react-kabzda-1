@@ -2,6 +2,7 @@ import React from "react";
 import {Field, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../../utils/validators/validators";
 import {TextArea} from "../../common/FormsControls/FormsControls";
+import "./AddMessageForm.module.scss"
 
 const AddMessageForm = (props) => {
     return <form onSubmit={props.handleSubmit}>

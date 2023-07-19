@@ -10,7 +10,6 @@ import {
     followUserThunkCreator,
     unfollowUserThunkCreator
 } from "../../data/users-reducer";
-import Preloader from "../common/Preloader/Preloader";
 import {compose} from "redux";
 import {
     getCurrentPage, getFollowingInProgress,
@@ -37,7 +36,6 @@ class UsersContainer extends React.Component {
 
     render() {
         return (<>
-            {this.props.isFetching ? <Preloader /> : null}
             <UsersPage totalUsersCount={this.props.totalUsersCount}
                        pageSize={this.props.pageSize}
                        currentPage={this.props.currentPage}

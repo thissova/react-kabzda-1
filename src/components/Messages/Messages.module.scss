@@ -42,7 +42,7 @@
 
     &s {
         .leftSide {
-            margit-left: 1vh;
+            margin-left: 1vh;
             .text{
                 margin-left: 2px;
             }
@@ -64,10 +64,4 @@
     width: auto;
     float: right;
     margin-top: 5px;
-
-    button{
-        cursor: pointer;
-        border: none;
-        border-radius: 10px;
-    }
 }
