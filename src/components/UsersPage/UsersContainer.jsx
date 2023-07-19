@@ -6,8 +6,6 @@ import {
     unfollow,
     setUsers,
     setCurrentPage,
-    setMultiplierBigger,
-    setMultiplierSmaller,
     getUsersThunkCreator,
     followUserThunkCreator,
     unfollowUserThunkCreator
@@ -16,7 +14,7 @@ import Preloader from "../common/Preloader/Preloader";
 import {compose} from "redux";
 import {
     getCurrentPage, getFollowingInProgress,
-    getIsFetching, getMultiplier,
+    getIsFetching,
     getPagesInLine,
     getPageSize,
     getTotalUsersCount,
@@ -48,9 +46,6 @@ class UsersContainer extends React.Component {
                        follow={this.props.follow}
                        unfollow={this.props.unfollow}
                        pagesInLine={this.props.pagesInLine}
-                       multiplier={this.props.multiplier}
-                       setMultiplierBigger={this.props.setMultiplierBigger}
-                       setMultiplierSmaller={this.props.setMultiplierSmaller}
                        followRequest={this.followRequest}
                        unfollowRequest={this.unfollowRequest}
                        followingInProgress={this.props.followingInProgress}
@@ -67,13 +62,12 @@ let mapStateToProps = (state => {
         currentPage: getCurrentPage(state),
         isFetching: getIsFetching(state),
         pagesInLine: getPagesInLine(state),
-        multiplier: getMultiplier(state),
         followingInProgress: getFollowingInProgress(state),
     }
 })
 
 export default compose(
     connect(mapStateToProps, {
-    follow, unfollow, setUsers, setCurrentPage, setMultiplierBigger, setMultiplierSmaller, getUsers: getUsersThunkCreator,
+    follow, unfollow, setUsers, setCurrentPage, getUsers: getUsersThunkCreator,
         followRequest: followUserThunkCreator, unfollowRequest: unfollowUserThunkCreator
 }))(UsersContainer)

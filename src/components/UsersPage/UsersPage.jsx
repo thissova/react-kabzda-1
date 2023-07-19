@@ -1,6 +1,6 @@
 import React from "react";
 import Paginator from "../common/Paginator/Paginator";
-import User from "./Users/Users";
+import Users from "./Users/Users";
 
 
 let UsersPage = (props) => {
@@ -9,13 +9,11 @@ let UsersPage = (props) => {
             <Paginator multiplier={props.multiplier}
                        currentPage={props.currentPage}
                        onPageChanged={props.onPageChanged}
-                       totalUsersCount={props.totalUsersCount}
+                       totalItemsCount={props.totalUsersCount}
                        pageSize={props.pageSize}
-                       pagesInLine={props.pagesInLine}
-                       setMultiplierBigger={props.setMultiplierBigger}
-                       setMultiplierSmaller={props.setMultiplierSmaller}
+                       portionSize={props.pagesInLine}
             />
-            <User followingInProgress={props.followingInProgress} followRequest={props.followRequest} unfollowRequest={props.unfollowRequest} users={props.users}/>
+            <Users followingInProgress={props.followingInProgress} followRequest={props.followRequest} unfollowRequest={props.unfollowRequest} users={props.users}/>
         </div>
     )
 }
