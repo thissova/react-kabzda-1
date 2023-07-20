@@ -1,4 +1,4 @@
-import React, {Suspense} from 'react'
+import React from 'react'
 import './App.scss';
 import {BrowserRouter, Route, withRouter} from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
@@ -11,12 +11,16 @@ import {initializeApp} from "./data/app-reducer";
 import {compose} from "redux";
 import Preloader from "./components/common/Preloader/Preloader";
 import store from "./data/redux-store";
+import ProfileContainer from "./components/Profile/ProfileContainer";
+import MessagesContainer from "./components/Messages/MessagesContainer";
+import UsersContainer from "./components/UsersPage/UsersContainer";
+import {Login} from "./components/Login/Login";
 
 
-const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"))
-const MessagesContainer = React.lazy(() => import("./components/Messages/MessagesContainer"))
-const UsersContainer = React.lazy(() => import("./components/UsersPage/UsersContainer"))
-const Login = React.lazy(() => import("./components/Login/Login"))
+// const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"))
+// const MessagesContainer = React.lazy(() => import("./components/Messages/MessagesContainer"))
+// const UsersContainer = React.lazy(() => import("./components/UsersPage/UsersContainer"))
+// const Login = React.lazy(() => import("./components/Login/Login"))
 
 class App extends React.Component {
     componentDidMount() {
@@ -24,22 +28,22 @@ class App extends React.Component {
     }
 
     render() {
+        if (!this.props.initialized) {
+            return <Preloader />
+        }
         return (
             <div className='app-wrapper'>
                 <HeaderContainer/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Suspense fallback={<div><Preloader/></div>}>
                         <Route exact path='/' render={() => <ProfileContainer/>}/>
                         <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
-                        <Route path='/messages' render={() =>
-                            <MessagesContainer/>}/>
+                        <Route path='/messages' render={() => <MessagesContainer/>}/>
                         <Route path='/users' render={() => <UsersContainer/>}/>
                         <Route path='/login' render={() => <Login/>}/>
                         <Route path='/news' component={News}/>
                         <Route path='/music' component={Music}/>
                         <Route path='/settings' component={Settings}/>
-                    </Suspense>
                 </div>
             </div>
         );
@@ -55,7 +59,7 @@ const AppContainer = compose(
 )(App);
 
 const MainApp = () => {
-    return <BrowserRouter>
+    return <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Provider store={store}>
             <AppContainer/>
         </Provider>
