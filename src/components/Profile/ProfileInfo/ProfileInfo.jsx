@@ -3,9 +3,14 @@ import Description from "./Description/Description";
 import styles from './ProfileInfo.module.scss'
 import userPhoto from '../../../assets/images/user_icon.png'
 import ProfileStatus from "./Status";
+import Preloader from "../../common/Preloader/Preloader";
 
 
 const ProfileInfo = (props) => {
+
+    if (!props.profile) {
+        return <Preloader />
+    }
 
     for (let contact in props.profile.contacts) {
         
