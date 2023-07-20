@@ -30,15 +30,15 @@ class App extends React.Component {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Suspense fallback={<div><Preloader/></div>}>
-                            <Route exact path='/' render={() => <ProfileContainer/>}/>
-                            <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
-                            <Route path='/messages' render={() =>
+                            <Route exact path='react-kabzda-1/' render={() => <ProfileContainer/>}/>
+                            <Route path='react-kabzda-1/profile/:userId?' render={() => <ProfileContainer/>}/>
+                            <Route path='react-kabzda-1/messages' render={() =>
                                 <MessagesContainer/>}/>
-                            <Route path='/users' render={() => <UsersContainer/>}/>
-                            <Route path='/login' render={() => <Login/>}/>
-                            <Route path='/news' component={News}/>
-                            <Route path='/music' component={Music}/>
-                            <Route path='/settings' component={Settings}/>
+                            <Route path='react-kabzda-1/users' render={() => <UsersContainer/>}/>
+                            <Route path='react-kabzda-1/login' render={() => <Login/>}/>
+                            <Route path='react-kabzda-1/news' component={News}/>
+                            <Route path='react-kabzda-1/music' component={Music}/>
+                            <Route path='react-kabzda-1/settings' component={Settings}/>
                     </Suspense>
                 </div>
             </div>
