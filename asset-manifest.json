@@ -1,37 +1,19 @@
 {
   "files": {
-    "main.css": "/react-kabzda-1/static/css/main.fd37d479.css",
-    "main.js": "/react-kabzda-1/static/js/main.f9fb96c8.js",
-    "static/css/222.7565d21e.chunk.css": "/react-kabzda-1/static/css/222.7565d21e.chunk.css",
-    "static/js/222.b683175f.chunk.js": "/react-kabzda-1/static/js/222.b683175f.chunk.js",
-    "static/css/119.4c545892.chunk.css": "/react-kabzda-1/static/css/119.4c545892.chunk.css",
-    "static/js/119.3d61188f.chunk.js": "/react-kabzda-1/static/js/119.3d61188f.chunk.js",
-    "static/css/336.092c9770.chunk.css": "/react-kabzda-1/static/css/336.092c9770.chunk.css",
-    "static/js/336.93fd4ce3.chunk.js": "/react-kabzda-1/static/js/336.93fd4ce3.chunk.js",
-    "static/css/87.30b96d28.chunk.css": "/react-kabzda-1/static/css/87.30b96d28.chunk.css",
-    "static/js/87.efe57e02.chunk.js": "/react-kabzda-1/static/js/87.efe57e02.chunk.js",
+    "main.css": "/react-kabzda-1/static/css/main.d12e449a.css",
+    "main.js": "/react-kabzda-1/static/js/main.67581f03.js",
     "static/js/787.2b0bd88f.chunk.js": "/react-kabzda-1/static/js/787.2b0bd88f.chunk.js",
-    "static/js/434.da2a70bc.chunk.js": "/react-kabzda-1/static/js/434.da2a70bc.chunk.js",
     "static/media/settings.png": "/react-kabzda-1/static/media/settings.168bd09a37795f3aeb10.png",
     "static/media/group.png": "/react-kabzda-1/static/media/group.e5cb3c5eb890b0f37932.png",
     "static/media/profileIcon.png": "/react-kabzda-1/static/media/profileIcon.33e7df0963941edbeb70.png",
     "static/media/preloader.svg": "/react-kabzda-1/static/media/preloader.0703713fd83b9299d5bd7e8ab0d4ca82.svg",
     "index.html": "/react-kabzda-1/index.html",
-    "main.fd37d479.css.map": "/react-kabzda-1/static/css/main.fd37d479.css.map",
-    "main.f9fb96c8.js.map": "/react-kabzda-1/static/js/main.f9fb96c8.js.map",
-    "222.7565d21e.chunk.css.map": "/react-kabzda-1/static/css/222.7565d21e.chunk.css.map",
-    "222.b683175f.chunk.js.map": "/react-kabzda-1/static/js/222.b683175f.chunk.js.map",
-    "119.4c545892.chunk.css.map": "/react-kabzda-1/static/css/119.4c545892.chunk.css.map",
-    "119.3d61188f.chunk.js.map": "/react-kabzda-1/static/js/119.3d61188f.chunk.js.map",
-    "336.092c9770.chunk.css.map": "/react-kabzda-1/static/css/336.092c9770.chunk.css.map",
-    "336.93fd4ce3.chunk.js.map": "/react-kabzda-1/static/js/336.93fd4ce3.chunk.js.map",
-    "87.30b96d28.chunk.css.map": "/react-kabzda-1/static/css/87.30b96d28.chunk.css.map",
-    "87.efe57e02.chunk.js.map": "/react-kabzda-1/static/js/87.efe57e02.chunk.js.map",
-    "787.2b0bd88f.chunk.js.map": "/react-kabzda-1/static/js/787.2b0bd88f.chunk.js.map",
-    "434.da2a70bc.chunk.js.map": "/react-kabzda-1/static/js/434.da2a70bc.chunk.js.map"
+    "main.d12e449a.css.map": "/react-kabzda-1/static/css/main.d12e449a.css.map",
+    "main.67581f03.js.map": "/react-kabzda-1/static/js/main.67581f03.js.map",
+    "787.2b0bd88f.chunk.js.map": "/react-kabzda-1/static/js/787.2b0bd88f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.fd37d479.css",
-    "static/js/main.f9fb96c8.js"
+    "static/css/main.d12e449a.css",
+    "static/js/main.67581f03.js"
   ]
 }
