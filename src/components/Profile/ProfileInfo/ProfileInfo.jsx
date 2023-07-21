@@ -9,27 +9,35 @@ import Preloader from "../../common/Preloader/Preloader";
 const ProfileInfo = (props) => {
 
     if (!props.profile) {
-        return <Preloader />
+        return <Preloader/>
     }
 
     for (let contact in props.profile.contacts) {
-        
+
         if (props.profile.contacts[contact] != null && props.profile.contacts[contact].slice(0, 8) === 'https://') {
-                props.profile.contacts[contact] = props.profile.contacts[contact].replace('https://', '')
-            
+            props.profile.contacts[contact] = props.profile.contacts[contact].replace('https://', '')
+
         }
     }
-    
+
+    const onMainPhotoSelected = (e) => {
+        let file = e.target.files[0]
+
+        props.setPhoto(file)
+    }
+
     return (
         <div className="content">
             <div className={styles.information}>
-                {props.profile.photos.large ? <img src={props.profile.photos.large} alt=''/> : <img src={userPhoto} alt=''/>}
+                {props.profile.photos.large ? <img src={props.profile.photos.large} alt=''/> :
+                    <img src={userPhoto} alt=''/>}
+                {props.isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
                 <section>
-                    <Description profile={props.profile} />
+                    <Description profile={props.profile}/>
                 </section>
-                    <div><ProfileStatus className={styles.status} status={props.status} setStatus={props.setStatus}/></div>
+                <div><ProfileStatus className={styles.status} status={props.status} setStatus={props.setStatus}/></div>
             </div>
-        </div >
+        </div>
     )
 }
 

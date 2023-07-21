@@ -12,6 +12,7 @@ const ADD_POST = 'ADD_POST'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_STATUS = 'SET_STATUS'
 const DELETE_POST = 'DELETE_POST'
+const SET_PHOTO = 'SET_PHOTO'
 
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -25,6 +26,11 @@ const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 profile: action.profile
+            }
+        case SET_PHOTO:
+            return {
+                ...state,
+                profile: {...state.profile, photos: action.photos}
             }
         case SET_STATUS:
             return {
@@ -47,6 +53,7 @@ const profileReducer = (state = initialState, action) => {
 export let addPostActionCreator = (message) => ({type: ADD_POST, message})
 export let deletePostActionCreator = (postId) => ({type: DELETE_POST, postId})
 export let setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
+export let setUserPhoto = (photos) => ({type: SET_PHOTO, photos})
 export let setStatus = (status) => ({type: SET_STATUS, status})
 export const getUserProfileThunkCreator = (userId) => async (dispatch) => {
     let response = await profileAPI.getUserProfile(userId)
@@ -55,11 +62,17 @@ export const getUserProfileThunkCreator = (userId) => async (dispatch) => {
 }
 export const setStatusThunkCreator = (status) => async (dispatch) => {
     await profileAPI.updateStatus(status)
-        dispatch(setStatus(status))
+    dispatch(setStatus(status))
 }
 export const getStatusThunkCreator = (userId) => async (dispatch) => {
     let response = await profileAPI.getStatus(userId)
-        dispatch(setStatus(response.data))
+    dispatch(setStatus(response.data))
+
+}
+export const setPhotoThunkCreator = (photo) => async (dispatch) => {
+    let response = await profileAPI.setPhoto(photo)
+    debugger
+    dispatch(setUserPhoto(response.data.data.photos))
 
 }
 
