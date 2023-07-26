@@ -3,7 +3,7 @@ import Profile from "./Profile";
 import {connect} from "react-redux";
 import {
     getStatusThunkCreator,
-    getUserProfileThunkCreator, setPhotoThunkCreator,
+    getUserProfileThunkCreator, saveProfileThunkCreator, setPhotoThunkCreator,
     setStatusThunkCreator,
     setUserProfile
 } from "../../data/profile-reducer";
@@ -64,7 +64,8 @@ export default compose(connect(mapStateToProps, {
         getUserProfile: getUserProfileThunkCreator,
         setStatus: setStatusThunkCreator,
         getStatus: getStatusThunkCreator,
-        setPhoto: setPhotoThunkCreator
+        setPhoto: setPhotoThunkCreator,
+    saveProfile: saveProfileThunkCreator
     }),
     withRouter,
 )(ProfileContainer)

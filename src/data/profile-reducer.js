@@ -1,4 +1,5 @@
 import {profileAPI} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 let initialState = {
     posts: [
@@ -71,9 +72,19 @@ export const getStatusThunkCreator = (userId) => async (dispatch) => {
 }
 export const setPhotoThunkCreator = (photo) => async (dispatch) => {
     let response = await profileAPI.setPhoto(photo)
-    debugger
     dispatch(setUserPhoto(response.data.data.photos))
 
+}
+
+export const saveProfileThunkCreator = (profile) => async (dispatch, getState) => {
+    let userId = getState().auth.id
+    let response = await profileAPI.saveProfile(profile)
+    if (response.data.resultCode === 0) {
+        dispatch(getUserProfileThunkCreator(userId))
+    } else {
+        dispatch(stopSubmit("DescriptionForm", {_error : response.data.messages[0]}))
+        return Promise.reject(response.data.messages[0])
+    }
 }
 
 export default profileReducer

@@ -1,41 +1,44 @@
-import React from "react";
+import React, {useState} from "react";
 import Description from "./Description/Description";
 import styles from './ProfileInfo.module.scss'
 import userPhoto from '../../../assets/images/user_icon.png'
 import ProfileStatus from "./Status";
 import Preloader from "../../common/Preloader/Preloader";
+import DescriptionForm from "./Description/DescriptionForm";
 
 
-const ProfileInfo = (props) => {
+const ProfileInfo = ({profile, isOwner, status, setStatus, setPhoto, saveProfile}) => {
 
-    if (!props.profile) {
+    let [editMode, setEditMode] = useState(false)
+
+    if (!profile) {
         return <Preloader/>
-    }
-
-    for (let contact in props.profile.contacts) {
-
-        if (props.profile.contacts[contact] != null && props.profile.contacts[contact].slice(0, 8) === 'https://') {
-            props.profile.contacts[contact] = props.profile.contacts[contact].replace('https://', '')
-
-        }
     }
 
     const onMainPhotoSelected = (e) => {
         let file = e.target.files[0]
 
-        props.setPhoto(file)
+        setPhoto(file)
+    }
+
+    const onSubmit = (formData) => {
+        saveProfile(formData).then(() => setEditMode(false))
     }
 
     return (
         <div className="content">
             <div className={styles.information}>
-                {props.profile.photos.large ? <img src={props.profile.photos.large} alt=''/> :
+                {profile.photos.large ? <img src={profile.photos.large} alt=''/> :
                     <img src={userPhoto} alt=''/>}
-                {props.isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
+                {isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
                 <section>
-                    <Description profile={props.profile}/>
+                    {editMode
+                        ? <DescriptionForm onSubmit={onSubmit}/> :
+                        <Description profile={profile} isOwner={isOwner} goToEditMode={() => {
+                            setEditMode(true)
+                        }}/>}
                 </section>
-                <div><ProfileStatus className={styles.status} status={props.status} setStatus={props.setStatus}/></div>
+                <div><ProfileStatus className={styles.status} status={status} setStatus={setStatus}/></div>
             </div>
         </div>
     )
