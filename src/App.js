@@ -1,6 +1,6 @@
 import React, {Suspense} from 'react'
 import './App.scss';
-import {BrowserRouter, Redirect, Route, Switch, withRouter} from 'react-router-dom';
+import {HashRouter, Redirect, Route, Switch, withRouter} from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import News from './components/News/News';
 import Music from './components/Music/Music';
@@ -70,11 +70,11 @@ const AppContainer = compose(
 )(App);
 
 const MainApp = () => {
-    return <BrowserRouter basename={""}>
+    return <HashRouter basename={""}>
         <Provider store={store}>
             <AppContainer/>
         </Provider>
-    </BrowserRouter>
+    </HashRouter>
 }
 
 export default MainApp
