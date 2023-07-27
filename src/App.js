@@ -1,6 +1,6 @@
 import React, {Suspense} from 'react'
 import './App.scss';
-import {HashRouter, Route, withRouter} from 'react-router-dom';
+import {BrowserRouter, Redirect, Route, Switch, withRouter} from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import News from './components/News/News';
 import Music from './components/Music/Music';
@@ -19,13 +19,23 @@ const UsersContainer = React.lazy(() => import("./components/UsersPage/UsersCont
 const Login = React.lazy(() => import("./components/Login/Login"))
 
 class App extends React.Component {
+
+    catchAllUnhandedErrors = (promiseRejectionEvent) => {
+        alert(promiseRejectionEvent)
+    }
     componentDidMount() {
         this.props.initialize()
+        window.addEventListener("unhandledrejection", this.catchAllUnhandedErrors );
+    }
+
+    componentWillUnmount() {
+        this.props.initialize()
+        window.removeEventListener("unhandledrejection", this.catchAllUnhandedErrors );
     }
 
     render() {
         if (!this.props.initialized) {
-            return <Preloader />
+            return <Preloader/>
         }
         return (
             <div className='app-wrapper'>
@@ -33,14 +43,17 @@ class App extends React.Component {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Suspense fallback={<div><Preloader/></div>}>
-                        <Route exact path='/' render={() => <ProfileContainer/>}/>
-                        <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
-                        <Route path='/messages' render={() => <MessagesContainer/>}/>
-                        <Route path='/users' render={() => <UsersContainer/>}/>
-                        <Route path='/login' render={() => <Login/>}/>
-                        <Route path='/news' component={News}/>
-                        <Route path='/music' component={Music}/>
-                        <Route path='/settings' component={Settings}/>
+                        <Switch>
+                            <Route exact path='/' render={() => <Redirect to={"/profile"}/>}/>
+                            <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
+                            <Route path='/messages' render={() => <MessagesContainer/>}/>
+                            <Route path='/users' render={() => <UsersContainer/>}/>
+                            <Route path='/login' render={() => <Login/>}/>
+                            <Route path='/news' render={() => <News/>}/>
+                            <Route path='/music' render={() => <Music/>}/>
+                            <Route path='/settings' render={() => <Settings/>}/>
+                            <Route path='*' render={() => <div>404 NOT FOUND</div>}/>
+                        </Switch>
                     </Suspense>
                 </div>
             </div>
@@ -57,11 +70,11 @@ const AppContainer = compose(
 )(App);
 
 const MainApp = () => {
-    return <HashRouter basename={""}>
+    return <BrowserRouter basename={""}>
         <Provider store={store}>
             <AppContainer/>
         </Provider>
-    </HashRouter>
+    </BrowserRouter>
 }
 
 export default MainApp

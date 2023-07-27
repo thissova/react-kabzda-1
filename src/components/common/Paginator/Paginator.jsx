@@ -23,7 +23,7 @@ let Paginator = ({totalItemsCount, pageSize, currentPage, onPageChanged, portion
             <button disabled={portionNumber === 1} onClick={() => setPortionNumber(portionNumber - 1)}>←</button>
 
             {pages.filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber).map(p => {
-                return <span className={currentPage === p ? styles.selected : styles.unselected}
+                return <span key={p} className={currentPage === p ? styles.selected : styles.unselected}
                              onClick={() => {
                                  onPageChanged(p);
                              }}>{p + " "}</span>
