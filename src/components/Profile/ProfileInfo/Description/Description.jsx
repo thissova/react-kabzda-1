@@ -4,7 +4,6 @@ import styles from "../ProfileInfo.module.scss";
 
 const Description = ({profile, isOwner, goToEditMode}) => {
     return <div>
-        {isOwner && <div><button onClick={goToEditMode}>edit</button></div>}
         <div>
             <b>Full name</b>: {profile.fullName}
         </div>
@@ -25,6 +24,7 @@ const Description = ({profile, isOwner, goToEditMode}) => {
             return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]}/>
         })}
         </div>
+        {isOwner && <div><button className={styles.editButton} onClick={goToEditMode}>edit</button></div>}
     </div>
 }
 const Contact = ({contactTitle, contactValue}) => {

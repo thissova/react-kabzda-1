@@ -30,7 +30,7 @@ const ProfileInfo = ({profile, isOwner, status, setStatus, setPhoto, saveProfile
             <div className={styles.information}>
                 {profile.photos.large ? <img src={profile.photos.large} alt=''/> :
                     <img src={userPhoto} alt=''/>}
-                {isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
+
                 <section>
                     {editMode
                         ? <DescriptionForm onSubmit={onSubmit}/> :
@@ -38,6 +38,10 @@ const ProfileInfo = ({profile, isOwner, status, setStatus, setPhoto, saveProfile
                             setEditMode(true)
                         }}/>}
                 </section>
+                {isOwner && <div> <input type="file" accept=".png, .jpg, .jpeg" onChange={onMainPhotoSelected} className={styles.fileInput} id="file-input" name="file-input"/>
+                    <label className={styles.fileInputLabel} htmlFor="file-input"
+                    >Select a File</label></div>
+                }
                 <div><ProfileStatus className={styles.status} status={status} setStatus={setStatus}/></div>
             </div>
         </div>
