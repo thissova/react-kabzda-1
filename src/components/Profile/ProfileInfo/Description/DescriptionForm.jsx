@@ -10,9 +10,6 @@ import stylesError from "./../../../common/FormsControls/FormsControls.module.sc
 const DescriptionForm = ({handleSubmit, profile, error, load}) => {
     load(profile)
     return <form onSubmit={handleSubmit}>
-        <div>
-            <button >Save</button>
-        </div>
         {error ? <div className={stylesError.formSummaryError}>
             {error}
         </div> : null}
@@ -35,6 +32,9 @@ const DescriptionForm = ({handleSubmit, profile, error, load}) => {
             <b>Contacts</b>: {Object.keys(profile.contacts).filter(c => c !== "vk" && c !== "mainLink").map(key => {
             return <div key={key} className={styles.contact}><b>{key}: </b> {createField([], key, "contacts." + key, Input)} </div>
         })}
+        </div>
+        <div>
+            <button className={styles.editButton}>Save</button>
         </div>
     </form>
 }

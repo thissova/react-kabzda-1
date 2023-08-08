@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { sendMessageActionCreator, changeSendMessageActionCreator } from "../../data/messages-reducer";
+import { sendMessageActionCreator } from "../../data/messages-reducer";
 import Messages from "./Messages";
 import {compose} from "redux";
 
@@ -16,9 +16,6 @@ const mapDispatchToProps = (dispatch) => {
         sendMessage: (newMessageBody) => {
             dispatch(sendMessageActionCreator(newMessageBody))
         },
-        changeSendMessage: (text) => {
-            dispatch(changeSendMessageActionCreator(text))
-        }
     }
 }
 

@@ -29,7 +29,7 @@ describe("Status component", () => {
         const root = component.root
         // eslint-disable-next-line testing-library/await-async-query
         let span = root.findByType("span")
-        expect(span.children[0]).toBe('piy piy')
+        expect(span.children[1]).toBe('piy piy')
     })
     test("input should be displayed in editMode", () => {
         const component = create(<ProfileStatus status="piy piy"/>)
