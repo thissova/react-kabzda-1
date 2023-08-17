@@ -9,7 +9,7 @@ import {reducer as formReducer} from "redux-form";
 import appReducer from "./app-reducer";
 import {configureStore} from "@reduxjs/toolkit";
 
-let reducers = combineReducers({
+let rootReducer = combineReducers({
     account: account,
     profilePage: profileReducer,
     messagesPage: messagesReducer,
@@ -17,9 +17,11 @@ let reducers = combineReducers({
     auth: authReducers,
     app: appReducer,
     form: formReducer
-
 })
 
-let store = configureStore({reducer: reducers, middleware: [thunkMiddleware]})
+type rootReducerType = typeof rootReducer
+export type AppStateType = ReturnType<rootReducerType>
+
+let store = configureStore({reducer: rootReducer, middleware: [thunkMiddleware]})
 
 export default store

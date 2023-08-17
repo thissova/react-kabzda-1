@@ -2,7 +2,7 @@ import {usersAPI} from "../api/api"
 import {updateObjectInArray} from "../utils/objectHelpers";
 import {PhotosType} from "./profile-reducer";
 
-type UserType = {
+export type UserType = {
     name: string,
     id: number,
     status: string
@@ -11,7 +11,7 @@ type UserType = {
 }
 
 let initialState = {
-    users: null as Array<UserType> | null,
+    users: [] as Array<UserType>,
     pageSize: 5 as number,
     totalUsersCount: 0 as number,
     currentPage: 1 as number,

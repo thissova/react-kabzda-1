@@ -15,7 +15,7 @@ import MessagesContainer from "./components/Messages/MessagesContainer";
 
 
 const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"))
-const UsersContainer = React.lazy(() => import("./components/UsersPage/UsersContainer"))
+const UsersContainer = React.lazy(() => import("./components/UsersPage/UsersPageContainer"))
 const Login = React.lazy(() => import("./components/Login/Login"))
 
 class App extends React.Component {
